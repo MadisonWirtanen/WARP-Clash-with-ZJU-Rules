@@ -10,7 +10,7 @@
 - 只需将Vless节点中空余处对应按[edgetunnel](https://github.com/cmliu/edgetunnel)文档部署服务中显示的信息填入即可
 - 特性需要Clash.Meta内核，故Clash客户端建议使用[clash-verge-rev（Windows）](https://github.com/clash-verge-rev/clash-verge-rev)、[ClashMetaForAndroid（Android）](https://github.com/MetaCubeX/ClashMetaForAndroid)
 - 移动端因为性能原因以下模板可能无法正常使用，可考虑使用clashlite.yaml文件模板，iOS端软件可能不适配配置文件
-- 想要实现URL导入配置文件的可以fork并更改配置后从GitHub仓库的文件链接或[jsDelivr CDN](https://www.jsdelivr.com/github)导入，或者想要隐私性更强可参考[这篇教程](https://github.com/DustinWin/clash_singbox-tutorials/blob/main/教程合集/Clash/基础篇/生成带有自定义策略组和规则的 Clash 配置文件直链-geodata 方案.md)修改配置及在Gist上生成secret gist
+- 想要实现URL导入配置文件的可以fork并更改配置后从GitHub仓库的文件链接或[jsDelivr CDN](https://www.jsdelivr.com/github)导入，或者想要隐私性更强可参考[这篇教程](https://github.com/DustinWin/clash_singbox-tutorials/blob/main/%E6%95%99%E7%A8%8B%E5%90%88%E9%9B%86/Clash/%E5%9F%BA%E7%A1%80%E7%AF%87/%E7%94%9F%E6%88%90%E5%B8%A6%E6%9C%89%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AD%96%E7%95%A5%E7%BB%84%E5%92%8C%E8%A7%84%E5%88%99%E7%9A%84%20Clash%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9B%B4%E9%93%BE-geodata%20%E6%96%B9%E6%A1%88.md)修改配置及在Gist上生成secret gist
 
 ```yaml
 # 代理集合（获取机场订阅链接内的所有节点）
