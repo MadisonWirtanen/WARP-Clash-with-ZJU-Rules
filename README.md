@@ -8,6 +8,7 @@
 
 - 配置文件中同时使用了[aiboboxx/clashfree](https://github.com/aiboboxx/clashfree)、[ermaozi/get_subscribe](https://github.com/ermaozi/get_subscribe)提供的节点信息作为补充
 - 只需将Vless节点中空余处对应按[edgetunnel](https://github.com/cmliu/edgetunnel)文档部署服务中显示的信息填入即可
+- 特性需要Clash.Meta内核，故Clash客户端建议使用[clash-verge-rev（Windows）](https://github.com/clash-verge-rev/clash-verge-rev)、[ClashMetaForAndroid（Android）](https://github.com/MetaCubeX/ClashMetaForAndroid)
 - 移动端因为性能原因以下模板可能无法正常使用，可考虑使用clashlite.yaml文件模板，iOS端软件可能不适配配置文件
 - 想要实现URL导入配置文件的可以fork并更改配置后从GitHub仓库的文件链接或[jsDelivr CDN](https://www.jsdelivr.com/github)导入，或者想要隐私性更强可参考[这篇教程](https://github.com/DustinWin/clash_singbox-tutorials/blob/main/教程合集/Clash/基础篇/生成带有自定义策略组和规则的 Clash 配置文件直链-geodata 方案.md)修改配置及在Gist上生成secret gist
 
