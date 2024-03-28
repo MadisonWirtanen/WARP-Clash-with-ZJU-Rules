@@ -18,18 +18,18 @@ proxy-providers:
 proxies:
   - name: 🆓 Vless节点
     type: vless
-    server: 
+    server: vless.wyk5832.workers.dev
     port: 443
-    uuid: 
+    uuid: d17ca95a-8eaf-492f-93fa-538c88956bb3
     network: ws
     tls: true
     udp: false
-    sni: 
+    sni: vless.wyk5832.workers.dev
     client-fingerprint: chrome
     ws-opts:
       path: "/?ed=2048"
       headers:
-        host: 
+        host: vless.wyk5832.workers.dev
 
 # 策略组
 proxy-groups:
