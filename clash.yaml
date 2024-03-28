@@ -76,7 +76,7 @@ proxy-groups:
   - {name: 🪜 代理域名, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
   - {name: 📲 电报消息, type: select, proxies: [🚀 节点选择]}
   - {name: 🐟 漏网之鱼, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
-  - {name: 📈 网络测试, type: select, proxies: [🎯 全球直连, 🌏 WARP, 🇺🇸 美国节点, 🇺🇳 其它节点, 🆓 Vless节点]}
+  - {name: 📈 网络测速, type: select, proxies: [🎯 全球直连, 🌏 WARP, 🇺🇸 美国节点, 🇺🇳 其它节点, 🆓 Vless节点]}
   - {name: 🔒 私有网络, type: select, proxies: [DIRECT]}
   - {name: 🛑 广告拦截, type: select, proxies: [REJECT]}
   - {name: 🎯 全球直连, type: select, proxies: [DIRECT]}
