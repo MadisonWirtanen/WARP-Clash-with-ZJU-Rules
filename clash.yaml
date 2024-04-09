@@ -1,69 +1,39 @@
+# WIKI: https://wiki.metacubex.one/config/
+
+dns: {enable: true, listen: 0.0.0.0:1053, ipv6: true, enhanced-mode: fake-ip, fake-ip-filter: ['*', '+.lan', '+.local'], nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'], proxy-server-nameserver: ['https://doh.pub/dns-query'], nameserver-policy: {'geosite:cn,private:': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'], 'geosite:geolocation-!cn:': ['https://dns.cloudflare.com/dns-query#dns', 'https://dns.google/dns-query#dns']}}
+cfw-bypass: ['localhost', '127.*', '10.*', '172.16.*', '172.17.*', '172.18.*', '172.19.*', '172.20.*', '172.21.*', '172.22.*', '172.23.*', '172.24.*', '172.25.*', '172.26.*', '172.27.*', '172.28.*', '172.29.*', '172.30.*', '172.31.*', '192.168.*', '<local>']
+
 # 代理集合（获取机场订阅链接内的所有节点）
+p: &p {type: http, interval: 3600, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 300, timeout: 5000}}
 proxy-providers:
   🛫 WARP:
-    type: http
     # 源地址 https://github.com/vvbbnn00/WARP-Clash-API
+    <<: *p
     url: "https://subs.zeabur.app/clash"
-    path: ./proxies/warp.yaml
-    interval: 3600
-    # 初步筛选需要的节点，可有效减轻路由器压力，支持正则表达式，不筛选可删除此配置项
     filter: "(?i)CF|WARP"
-    health-check:
-      enable: true
-      lazy: true
-      url: "https://www.gstatic.com/generate_204"
-      interval: 300
-      timeout: 2000
+
+  🛫 Vless:
+    <<: *p
+    url: "https://publicvless.pages.dev/d17ca95a-8eaf-492f-93fa-538c88956bb3"
 
   🛫 我的机场 1:
-    type: http
     # 源地址 https://github.com/aiboboxx/clashfree
+    <<: *p
     url: "https://cdn.jsdelivr.net/gh/aiboboxx/clashfree@main/clash.yml"
-    path: ./proxies/airport1.yaml
-    interval: 43200
     filter: "^(?!.*(?i)(CloudFlare)).*$"
-    health-check:
-      enable: true
-      lazy: true
-      url: "https://www.gstatic.com/generate_204"
-      interval: 300
-      timeout: 2000
 
   🛫 我的机场 2:
-    type: http
     # 源地址 https://github.com/ermaozi/get_subscribe
+    <<: *p
     url: "https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/clash.yml"
-    path: ./proxies/airport2.yaml
-    interval: 43200
-    health-check:
-      enable: true
-      lazy: true
-      url: "https://www.gstatic.com/generate_204"
-      interval: 600
-      timeout: 2000
-  # 更多免费订阅收集仓库: https://github.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy
 
-# 单个出站代理节点（以 vless 为例）
-proxies:
-  - name: 🆓 Vless节点
-    type: vless
-    server: vless.wyk5832.workers.dev
-    port: 443
-    uuid: d17ca95a-8eaf-492f-93fa-538c88956bb3
-    network: ws
-    tls: true
-    udp: false
-    sni: vless.wyk5832.workers.dev
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/?ed=2048"
-      headers:
-        host: vless.wyk5832.workers.dev
+  # 更多免费订阅收集仓库: https://github.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy
 
 # 策略组
 proxy-groups:
   - {name: 🚀 节点选择, type: select, proxies: [🌏 WARP, 🇺🇸 美国节点, 🇺🇳 其它节点, 🆓 Vless节点, 🎯 全球直连]}
-  - {name: 🌏 WARP, type: url-test, tolerance: 100, lazy: true, use: [🛫 WARP], filter: "CF|WARP"}
+  - {name: 🌏 WARP, type: url-test, lazy: true, use: [🛫 WARP]}
+  - {name: 🆓 Vless节点, type: url-test, lazy: true, use: [🛫 Vless]}
   - {name: 🏫 ZJU, type: select, proxies: [🎯 全球直连]}
   - {name: 🤖 AI, type: select, proxies: [🆓 Vless节点]}
   - {name: ♾️ GitHub, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
@@ -76,13 +46,13 @@ proxy-groups:
   - {name: 🪜 代理域名, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
   - {name: 📲 电报消息, type: select, proxies: [🚀 节点选择]}
   - {name: 🐟 漏网之鱼, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
-  - {name: 📈 网络测速, type: select, proxies: [🎯 全球直连, 🌏 WARP, 🇺🇸 美国节点, 🇺🇳 其它节点, 🆓 Vless节点]}
+  - {name: 📈 网络测速, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
   - {name: 🔒 私有网络, type: select, proxies: [DIRECT]}
   - {name: 🛑 广告拦截, type: select, proxies: [REJECT]}
   - {name: 🎯 全球直连, type: select, proxies: [DIRECT]}
 
   - {name: 🇺🇸 美国节点, type: url-test, lazy: true, use: [🛫 我的机场 1, 🛫 我的机场 2], filter: "(?i)美|us|unitedstates|united states"}
-  - {name: 🇺🇳 其它节点, type: url-test, lazy: true, include-all-providers: true, filter: "^(?!.*(?i)(CloudFlare|CF|WARP|美|us)).*$"}
+  - {name: 🇺🇳 其它节点, type: url-test, lazy: true, use: [🛫 我的机场 1, 🛫 我的机场 2], filter: "^(?!.*(?i)(CloudFlare|CF|WARP|美|us)).*$"}
 
 # 路由规则
 rules:
@@ -90,7 +60,7 @@ rules:
   - RULE-SET,ai,🤖 AI
 
   - RULE-SET,applications,DIRECT
-  - DOMAIN-SUFFIX,imkk.uk,DIRECT
+  - DOMAIN-SUFFIX,deeplx.org,DIRECT
 
   - GEOSITE,category-ads-all,🛑 广告拦截
   - DST-PORT,6881-6889,🎯 全球直连   # P2P(BT)流量端口
@@ -115,7 +85,7 @@ rule-providers:
     behavior: classical
     format: yaml
     path: ./rules/ZJU.yaml
-    url: "https://gist.githubusercontent.com/MadisonWirtanen/dea50be03b79db737505e1c80c86da6c/raw/ZJU.yaml"
+    url: "https://fastly.jsdelivr.net/gh/MadisonWirtanen/WARP-Clash-with-ZJU-Rules@main/ZJU.yaml"
     interval: 86400
 
   ai:
@@ -123,7 +93,7 @@ rule-providers:
     behavior: classical
     format: yaml
     path: ./rules/ai.yaml
-    url: "https://gist.githubusercontent.com/MadisonWirtanen/e965aa2048ca2e19d34d01ed21b7435d/raw/ai.yaml"
+    url: "https://fastly.jsdelivr.net/gh/MadisonWirtanen/WARP-Clash-with-ZJU-Rules@main/ai.yaml"
     interval: 86400
 
   applications:
