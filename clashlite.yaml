@@ -1,12 +1,12 @@
+dns: {enable: true, ipv6: false, prefer-h3: true, listen: "0.0.0.0:53", enhanced-mode: fake-ip, fake-ip-range: "198.18.0.1/16", nameserver: ["tls://1.1.1.1", "tls://8.8.8.8", "https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"], default-nameserver: ["system://", "223.5.5.5"], nameserver-policy: {geosite:cn: ["system://", "223.5.5.5"]}, fake-ip-filter: ["+.lan", "+.local", "+.example.com"]}
 # 代理集合（获取机场订阅链接内的所有节点）
 proxy-providers:
-  🛫 WARP:
+  🛫 aggregator:
     type: http
     # 源地址 https://github.com/vvbbnn00/WARP-Clash-API
-    url: "https://subs.zeabur.app/clash"
+    url: "https://ghproxy.net/https://gist.githubusercontent.com/zwyzcdn/98bf1db8aaf0576e94871cce25b885e5/raw/clash.yaml"
     path: ./proxies/warp.yaml
-    interval: 600
-    filter: "(?i)CF|WARP"
+    interval: 3600
     health-check:
       enable: true
       # 未选择到当前代理集合时，不会进行测试，有多个代理集合时可使用
@@ -78,29 +78,6 @@ rule-providers:
     path: ./rules/ai.yaml
     url: "https://gist.githubusercontent.com/MadisonWirtanen/e965aa2048ca2e19d34d01ed21b7435d/raw/ai.yaml"
     interval: 86400
-
-cfw-bypass:
-  - localhost
-  - 127.*
-  - 10.*
-  - 172.16.*
-  - 172.17.*
-  - 172.18.*
-  - 172.19.*
-  - 172.20.*
-  - 172.21.*
-  - 172.22.*
-  - 172.23.*
-  - 172.24.*
-  - 172.25.*
-  - 172.26.*
-  - 172.27.*
-  - 172.28.*
-  - 172.29.*
-  - 172.30.*
-  - 172.31.*
-  - 192.168.*
-  - <local>
 
 # 规则
 rules:

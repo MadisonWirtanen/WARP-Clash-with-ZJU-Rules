@@ -1,5 +1,7 @@
 # WARP-Clash-with-ZJU-Rules
 
+**更新:** 更新DNS设置
+
 一个结合[WARP-Clash-API](https://github.com/vvbbnn00/WARP-Clash-API), [edgetunnel](https://github.com/cmliu/edgetunnel)并使用[ZJU-Rules](https://github.com/MadisonWirtanen/WARP-Clash-with-ZJU-Rules/blob/main/ZJU.yaml)的免费Clash订阅配置模板
 
 [WARP-Clash-API](https://github.com/vvbbnn00/WARP-Clash-API) 可以将WARP服务转为Clash订阅, 无限流量且响应速度极快, 但无法访问OpenAI、New Bing、Copilot等服务; [edgetunnel](https://github.com/cmliu/edgetunnel) 可以将CloudFlare Workers服务转为Vless节点, 可以访问OpenAI、New Bing、Copilot等服务, 但每月流量有限且访问安全等级较高的网站会出现隐私错误. 将二者结合即可实现免费的完全体Clash订阅, 演示配置文件见 [clash.yaml](https://github.com/MadisonWirtanen/WARP-Clash-with-ZJU-Rules/blob/main/clash.yaml), URL导入可使用 [clash.yaml(镜像)](https://mirror.ghproxy.com/https://raw.githubusercontent.com/MadisonWirtanen/WARP-Clash-with-ZJU-Rules/main/clash.yaml). 
