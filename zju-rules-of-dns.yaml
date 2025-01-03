@@ -1,0 +1,25 @@
+dns: 
+  enable: true
+  ipv6: false
+  prefer-h3: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver: 
+    - tls://1.1.1.1
+    - tls://8.8.8.8
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver: 
+    - system://
+    - 223.5.5.5
+  nameserver-policy: 
+    +.cc98.org: system://
+    +.zju.edu.cn: system://
+    geosite:cn: 
+      - system://
+      - 223.5.5.5
+  fake-ip-filter: 
+    - +.lan
+    - +.local
+    - +.example.com
